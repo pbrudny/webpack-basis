@@ -1,12 +1,14 @@
 import React from 'react';
 import uuid from 'uuid';
+import style from './App.css';
+import Title from './Title.js';
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             data: []
-        }
+        };
     }
 
     addTodo(val) {
@@ -28,7 +30,7 @@ class App extends React.Component {
         //it's a container so we only have divs and other components
         return (
             <div className={style.TodoApp}>
-                Tutaj pojawią się komponenty naszej aplikacji
+                <Title title={'My Todo App'} todoCount={this.state.data.length}/>
             </div>
         )
     }
