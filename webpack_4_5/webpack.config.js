@@ -1,8 +1,27 @@
+const env = process.env.NODE_ENV || 'production';
 const path = require('path');
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-var OptimizeJsPlugin = require('optimize-js-plugin');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const OptimizeJsPlugin = require('optimize-js-plugin');
+
+var plugins = [
+    new HtmlWebpackPlugin({
+        template: 'src/index.html',
+        filename: 'index.html',
+        inject: 'body'
+    })
+];
+
+console.log('NODE_ENV:', env);
+
+if (env === 'development') {
+    plugins.push(
+        new webpack.optimize.UglifyJsPlugin(),
+        new OptimizeJsPlugin({
+            sourceMap: false
+        })
+    );
+}
 
 module.exports = {
     entry: './src/index.js',
@@ -32,10 +51,5 @@ module.exports = {
             }
         ]
     },
-    plugins: [new HtmlWebpackPlugin({
-        template: 'src/index.html',
-        filename: 'index.html',
-        inject: 'body'
-    })
-    ]
+    plugins: plugins
 }
