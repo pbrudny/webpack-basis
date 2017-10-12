@@ -5,7 +5,7 @@ import style from './Todo.css';
 const Todo = props => {
     return (
         <div className={style.Todo}>
-            <li key={props.id} onClick={event => props.remove(props.id)}>
+            <li key={props.id} onClick={() => props.remove(props.id)}>
                 {props.text}
             </li>
         </div>

@@ -1,9 +1,9 @@
 import React from 'react';
 import uuid from 'uuid';
 import style from './App.css';
-import Title from './Title';
-import TodoList from './TodoList';
-import TodoForm from './TodoForm';
+import Title from '../components/Title';
+import TodoList from '../components/TodoList';
+import TodoForm from '../components/TodoForm';
 
 class App extends React.Component {
     constructor(props) {
@@ -20,7 +20,8 @@ class App extends React.Component {
                     id: 3,
                     text: 'brush teeth'
                 }
-            ]
+            ],
+            text: ''
         };
         this.removeTodo = this.removeTodo.bind(this);
         this.addTodo = this.addTodo.bind(this);
@@ -33,7 +34,11 @@ class App extends React.Component {
         };
 
         const data = [...this.state.data, todo];
-        this.setState({data});
+        this.setState({data, text: ''});
+    }
+
+    changeText(text) {
+        this.setState({text});
     }
 
     removeTodo(id) {
@@ -45,7 +50,7 @@ class App extends React.Component {
         return (
             <div className={style.TodoApp}>
                 <Title title={'Todo'} todoCount={this.state.data.length}/>
-                <TodoForm add={this.addTodo}/>
+                <TodoForm onInputChange={text => this.changeText(text)} text={this.state.text} addTodo={text => this.addTodo(text)}/>
                 <TodoList todos={this.state.data} remove={this.removeTodo}/>
             </div>
         )
