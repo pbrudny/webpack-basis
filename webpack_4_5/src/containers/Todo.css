@@ -1,0 +1,13 @@
+.Todo {
+    padding: 0.4em;
+    border: solid 1px;
+    margin: 10px;
+    background-color: white;
+    text-align: center;
+    border-radius: 15px;
+
+}
+
+.Todo:hover {
+    background-color: rgba(233, 186, 22, 0.27);
+}
