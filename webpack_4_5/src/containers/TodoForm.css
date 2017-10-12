@@ -1,0 +1,8 @@
+.TodoForm {
+    margin-bottom: 10px;
+}
+
+.TodoForm input {
+    height: 2em;
+    padding-left: 1em;
+}
